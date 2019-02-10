@@ -53,8 +53,8 @@ def print_top_articles():
 
     # Iterate over the fetched list of tuples and
     # print each article name with its total number of views.
-    for i in range(3):
-        print(f"\t{i+1}. {articles_views[i][0]:35} {articles_views[i][1]:10} views")
+    for i, (title, view) in enumerate(articles_views, 1):
+        print(f"\t{i}. {title:35} {view:10} views")
 
 
 def print_top_authors():
