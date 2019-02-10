@@ -15,12 +15,12 @@ query2 = """SELECT name, SUM(views) AS sum
             ORDER BY sum DESC"""
 
 # Select the days with the greatest error rate (greater than 1%).
-query3 = """SELECT error_request.day,
-                error_request.count, success_request.count
-            FROM error_request JOIN success_request
-            ON error_request.day = success_request.day
-            WHERE error_request.count >
-                0.01*(success_request.count + error_request.count)"""
+query3 = """
+SELECT error_requests.day,
+                (error_requests.errors::decimal / total_requests.requests)
+            FROM error_requests JOIN total_requests
+            ON error_requests.day = total_requests.day
+            WHERE error_requests.errors > 0.01 * total_requests.requests"""
 
 
 def connect(database_name="news"):
