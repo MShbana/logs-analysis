@@ -17,7 +17,7 @@ First required project for the [Full Stack Web Developer Nanodegree][1].
 1. What are the most popular three articles of all time?
 2. Who are the most popular authors of all time?
 3. On which days did more than 1% of requests lead to errors?
----
+----
 ## Requirements
 1. [VirtualBox][2]
 2. [Vagrant][3].
@@ -58,7 +58,7 @@ First required project for the [Full Stack Web Developer Nanodegree][1].
 CREATE VIEW title_name_id_views AS
     SELECT articles.title, authors.name, authors.id, COUNT(*) AS views
         FROM log JOIN articles
-            ON log.path = '/article/' || articles.slug
+            ON OVERLAY(log.path PLACING '' FROM 1 FOR 9) = articles.slug
         JOIN authors
             ON articles.author = authors.id
         GROUP BY articles.title, authors.name, authors.id
@@ -78,12 +78,10 @@ This _view_ contains each article's title, their authors's names, authors' id's 
 - create the `success_request` view:
 
 ```sql
-CREATE VIEW success_request AS
-    SELECT time::timestamp::date AS day, COUNT(*) AS count
+CREATE VIEW total_requests AS
+    SELECT time::timestamp::date AS day, COUNT(*) AS requests
         FROM log
-        WHERE status = '200 OK'
         GROUP BY day
-        ORDER BY count DESC;
 ```
 This _view_ contains all days and the number of successful requests in each day.
 
