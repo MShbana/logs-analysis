@@ -95,7 +95,7 @@ This _view_ contains all days and the number of successful requests in each day.
 - create the `error_request` view:
 
 ```sql
-CREATE VIEW error_request AS
+CREATE VIEW error_requests AS
     SELECT time::timestamp::date AS day, COUNT(*) AS errors
         FROM log
         WHERE status != '200 OK'
