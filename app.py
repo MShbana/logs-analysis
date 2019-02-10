@@ -96,17 +96,16 @@ def print_top_error_rate_dates():
     # Close the connection with the database.
     connection.close()
 
-    # Convert fetched the error day(s) from timestamp into a string.
-    error_date = str(error_days[0][0])
+    # Iterate over the fetched list of tuples and
+    # print each day and error rate.
+    for i, (day, errors, successes) in enumerate(error_days, 1):
+        error_rate = errors/(successes + errors)
 
-    # Round the error percentage to a two-decimal value.
-    error_percent = round((error_days[0][1] /
-                          (error_days[0][1] + error_days[0][2])) * 100, 2)
-    error_date_formatted = datetime.datetime.strptime(error_date, "%Y-%m-%d")
+        # Covnert each fetched day from timestamp type into
+        # a string type with a "month day, year" format
+        date = f"{day:%B %d, %Y}"
 
-    # Print the day and its error rate.
-    print(f"\t{error_date_formatted.strftime('%b %d, %Y'):35} {error_percent:10}% errors")
-
+        print(f"\t{i}. {date:35} {error_rate:9.2%} errors")
 
 if __name__ == "__main__":
     print(f"\n Most Popular Articles of All Time:\n{'-'*38}")
