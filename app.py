@@ -75,8 +75,8 @@ def print_top_authors():
 
     # Iterate over the fetched list of tuples and
     # print each author's name with their total number of views.
-    for i in range(4):
-        print(f"\t{i+1}. {authors_views[i][0]:35} {authors_views[i][1]:10} views")
+    for i, (author, view) in enumerate(authors_views, 1):
+        print(f"\t{i}. {author:35} {view:10} views")
 
 
 def print_top_error_rate_dates():
