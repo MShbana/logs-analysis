@@ -58,7 +58,7 @@ First required project for the [Full Stack Web Developer Nanodegree][1].
 CREATE VIEW title_name_id_views AS
     SELECT articles.title, authors.name, authors.id, COUNT(*) AS views
         FROM log JOIN articles
-            ON OVERLAY(log.path PLACING '' FROM 1 FOR 9) = articles.slug
+            ON log.path = '/article/' || articles.slug
         JOIN authors
             ON articles.author = authors.id
         GROUP BY articles.title, authors.name, authors.id
