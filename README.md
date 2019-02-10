@@ -75,7 +75,7 @@ This _view_ contains each article's title, their authors's names, authors' id's 
 | id | integer |
 | views | bigint |
 
-- create the `success_request` view:
+- create the `total_requests` view:
 
 ```sql
 CREATE VIEW total_requests AS
@@ -85,14 +85,14 @@ CREATE VIEW total_requests AS
 ```
 This _view_ contains all days and the number of successful requests in each day.
 
-`\d success_request`
+`\d total_requests`
 
 | Column | Type |
 | ------ | ---- |
 | day | date |
 | count | bigint |
 
-- create the `error_request` view:
+- create the `error_requests` view:
 
 ```sql
 CREATE VIEW error_requests AS
@@ -103,7 +103,7 @@ CREATE VIEW error_requests AS
 ```
 This _view_ contains all days and the number of requests that led to errors in each day.
 
-`\d error_request`
+`\d error_requests`
 
 | Column |Type |
 | ------ | --- |

@@ -14,7 +14,8 @@ query2 = """SELECT name, SUM(views) AS sum
             GROUP BY name
             ORDER BY sum DESC"""
 
-# Select the days with the greatest error rate (greater than 1%).
+# Select the days with the greatest error rate (greater than 1%)
+# and calculate their error rate
 query3 = """
 SELECT error_requests.day,
                 (error_requests.errors::decimal / total_requests.requests)
