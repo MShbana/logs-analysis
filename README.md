@@ -108,7 +108,7 @@ This _view_ contains all days and the number of requests that led to errors in e
 | Column |Type |
 | ------ | --- |
 | day | date |
-| count | bigint |
+| errors | bigint |
 
 
 4. `python3 log-analysis.project` to run the program.
