@@ -17,7 +17,7 @@ First required project for the [Full Stack Web Developer Nanodegree][1].
 1. What are the most popular three articles of all time?
 2. Who are the most popular authors of all time?
 3. On which days did more than 1% of requests lead to errors?
-----
+---
 ## Requirements
 1. [VirtualBox][2]
 2. [Vagrant][3].
@@ -58,7 +58,7 @@ First required project for the [Full Stack Web Developer Nanodegree][1].
 CREATE VIEW title_name_id_views AS
     SELECT articles.title, authors.name, authors.id, COUNT(*) AS views
         FROM log JOIN articles
-            ON OVERLAY(log.path PLACING '' FROM 1 FOR 9) = articles.slug
+            ON log.path = '/article/' || articles.slug
         JOIN authors
             ON articles.author = authors.id
         GROUP BY articles.title, authors.name, authors.id
