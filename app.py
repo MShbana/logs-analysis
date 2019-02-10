@@ -98,14 +98,12 @@ def print_top_error_rate_dates():
 
     # Iterate over the fetched list of tuples and
     # print each day and error rate.
-    for i, (day, errors, successes) in enumerate(error_days, 1):
-        error_rate = errors/(successes + errors)
-
+    for i, (day, error_rate) in enumerate(error_days, 1):
         # Covnert each fetched day from timestamp type into
         # a string type with a "month day, year" format
-        date = f"{day:%B %d, %Y}"
+        day = f"{day:%B %d, %Y}"
 
-        print(f"\t{i}. {date:35} {error_rate:9.2%} errors")
+        print(f"\t{i}. {day:35} {error_rate:9.2%} errors")
 
 if __name__ == "__main__":
     print(f"\n Most Popular Articles of All Time:\n{'-'*38}")
