@@ -96,11 +96,10 @@ This _view_ contains all days and the number of successful requests in each day.
 
 ```sql
 CREATE VIEW error_request AS
-    SELECT time::timestamp::date AS day, COUNT(*) AS count
+    SELECT time::timestamp::date AS day, COUNT(*) AS errors
         FROM log
         WHERE status != '200 OK'
         GROUP BY day
-        ORDER BY count DESC;
 ```
 This _view_ contains all days and the number of requests that led to errors in each day.
 
