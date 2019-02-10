@@ -90,7 +90,7 @@ This _view_ contains all days and the number of successful requests in each day.
 | Column | Type |
 | ------ | ---- |
 | day | date |
-| count | bigint |
+| requests | bigint |
 
 - create the `error_requests` view:
 
