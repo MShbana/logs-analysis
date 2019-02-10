@@ -15,7 +15,7 @@ query2 = """SELECT name, SUM(views) AS sum
             ORDER BY sum DESC"""
 
 # Select the days with the greatest error rate (greater than 1%)
-# and calculate their error rate
+# and calculate their error rates.
 query3 = """
 SELECT error_requests.day,
                 (error_requests.errors::decimal / total_requests.requests)
@@ -45,7 +45,7 @@ def print_top_articles():
     # Execute query 1 that selects the most popular articles.
     cursor.execute(query1)
 
-    # Fetch the 3 articles from the database and store them to a list of tuples.
+    # Fetch the authors from the database and store them to a list of tuples.
     # Each tuple contains one article and its total number of views.
     articles_views = cursor.fetchall()
 
@@ -81,7 +81,8 @@ def print_top_authors():
 
 
 def print_top_error_rate_dates():
-    """Select the days with the heighest error rate (greater than 1%) and display them."""
+    """Select the days with the heighest error
+    rate (greater than 1%) and display them."""
 
     # Connect to the database.
     connection, cursor = connect()
@@ -106,10 +107,12 @@ def print_top_error_rate_dates():
 
         print(f"\t{i}. {day:35} {error_rate:9.2%} errors")
 
+
 if __name__ == "__main__":
     print(f"\n Most Popular Articles of All Time:\n{'-'*38}")
     print_top_articles()
     print(f"\n Most Popular Authors of All Time:\n{'-'*37}")
     print_top_authors()
-    print(f"\n More than 1% of requests led to an error on this/those day(s):\n{'-'*65}")
+    print("\n More than 1% of requests led to an error"
+          f" on this/those day(s):\n{'-'*65}")
     print_top_error_rate_dates()
